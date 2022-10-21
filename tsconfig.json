@@ -23,6 +23,8 @@
   },
   "include": [
     "src",
-    "components"
+    "components",
+    "styles",
+    "utils"
   ]
 }
