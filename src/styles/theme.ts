@@ -1,8 +1,8 @@
 const theme = {
   colors: {
     primary: '#EC6E4C',
-    background: '#0891b2', // #0894B3
-    surface: '#155e75', //#0C7792 // #04313C
+    background: '#72909d',
+    surface: '#566d77',
     onSurface: '#FFF',
     surfaceVariant: '#FFF',
     onSurfaceVariant: '#000',

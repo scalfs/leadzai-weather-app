@@ -1,7 +1,7 @@
 import { Slot } from '@radix-ui/react-slot'
 import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
-import { Required } from 'utils/utility-types'
+import { Required } from 'utils'
 
 export interface HeadingProps {
   size?: 'lg' | 'xl'

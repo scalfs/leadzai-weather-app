@@ -1,11 +1,9 @@
-import React from 'react'
-
-import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Header } from '.'
 
 export default {
   title: 'Components/Header',
   component: Header
-} as ComponentMeta<typeof Header>
+} as Meta<typeof Header>
 
-export const Default: ComponentStory<typeof Header> = () => <Header />
+export const Default: StoryObj<typeof Header> = {}

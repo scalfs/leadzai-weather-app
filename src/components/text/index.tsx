@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
-import { Required } from 'utils/utility-types'
+import { Required } from 'utils'
 
 export interface TextProps {
   size?: 'sm' | 'md'
