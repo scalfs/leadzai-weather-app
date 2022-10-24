@@ -21,7 +21,12 @@ export function ScaleSwitch() {
         <label htmlFor="s1">{CelsiusScale.unit}</label>
       </Text>
 
-      <Switch id="s1" checked={checked} onCheckedChange={onCheckedChange} />
+      <Switch
+        id="s1"
+        checked={checked}
+        onCheckedChange={onCheckedChange}
+        label="scale-switch"
+      />
 
       <Text>
         <label htmlFor="s1">{FahrenheitScale.unit}</label>
