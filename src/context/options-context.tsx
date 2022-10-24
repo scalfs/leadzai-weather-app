@@ -16,7 +16,7 @@ const defaultValue = {
   changeLocation: () => {}
 }
 
-const OptionsContext = React.createContext<Context>(defaultValue)
+export const OptionsContext = React.createContext<Context>(defaultValue)
 
 interface Props {
   children: ReactNode
