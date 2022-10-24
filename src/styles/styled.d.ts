@@ -10,6 +10,9 @@ declare module 'styled-components' {
       surfaceVariant: string
       onSurfaceVariant: string
       text: string
+      accent: string
+      outline: string
+      shadow: string
     }
     font: {
       family: string

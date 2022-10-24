@@ -22,9 +22,6 @@
     "jsx": "react"
   },
   "include": [
-    "src",
-    "components",
-    "styles",
-    "utils"
+    "src"
   ]
 }

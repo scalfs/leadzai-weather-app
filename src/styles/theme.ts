@@ -5,8 +5,11 @@ const theme = {
     surface: '#566d77',
     onSurface: '#FFF',
     surfaceVariant: '#FFF',
-    onSurfaceVariant: '#000',
-    text: '#FFF'
+    onSurfaceVariant: '#18181b',
+    text: '#fafafa',
+    accent: '#e4e4e7',
+    outline: '#e5e7eb',
+    shadow: 'rgba(0, 0, 0, 0.7)'
   },
   font: {
     family:
@@ -14,7 +17,7 @@ const theme = {
     sizes: {
       xs: '1.2rem',
       sm: '1.4rem',
-      md: '1.6rem',
+      md: '1.8rem',
       lg: '2.4rem',
       xl: '3.2rem'
     },
