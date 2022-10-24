@@ -12,9 +12,9 @@ export function Temperature({ temp }: TemperatureProps) {
   const scaledTemp = temperatureScale.convertFromKelvin(temp)
 
   return (
-    <Heading size="xl">
+    <Heading size="xl" weight="bold" asChild>
       <h1>
-        {scaledTemp} {temperatureScale.unit}
+        {Math.round(scaledTemp)} {temperatureScale.unit}
       </h1>
     </Heading>
   )

@@ -21,6 +21,7 @@ export const XLarge: StoryObj<HeadingProps> = { args: { size: 'xl' } }
 export const CustomTag: StoryObj<HeadingProps> = {
   args: {
     size: 'xl',
+    weight: 'bold',
     asChild: true,
     children: <h1>15 ºC</h1>
   },

@@ -5,24 +5,30 @@ import { Required } from 'utils'
 
 export interface HeadingProps {
   size?: 'lg' | 'xl'
+  weight?: 'regular' | 'bold'
   children: ReactNode
   asChild?: boolean
 }
 
-export function Heading({ size = 'lg', children, asChild }: HeadingProps) {
+export function Heading({
+  size = 'lg',
+  weight = 'regular',
+  children,
+  asChild
+}: HeadingProps) {
   const Comp = asChild ? Slot : 'h2'
 
   return (
-    <Wrapper size={size}>
+    <Wrapper {...{ size, weight }}>
       <Comp>{children}</Comp>
     </Wrapper>
   )
 }
 
-const Wrapper = styled(Slot)<Required<HeadingProps, 'size'>>`
-  ${({ theme, size }) => css`
+const Wrapper = styled(Slot)<Required<HeadingProps, 'size' | 'weight'>>`
+  ${({ theme, size, weight }) => css`
     color: ${theme.colors.text};
-    font-weight: ${theme.font.weights.medium};
     font-size: ${theme.font.sizes[size]};
+    font-weight: ${theme.font.weights[weight]};
   `}
 `

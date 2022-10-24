@@ -18,7 +18,7 @@ const StyledHeader = styled.header`
   ${({ theme }) => css`
     display: flex;
     justify-content: center;
-    padding: ${theme.spacings.md};
+    padding: ${theme.spacings.sm};
     background-color: ${theme.colors.surface};
   `}
 `

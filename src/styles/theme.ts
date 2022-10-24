@@ -16,10 +16,10 @@ const theme = {
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
     sizes: {
       xs: '1.2rem',
-      sm: '1.4rem',
-      md: '1.8rem',
+      sm: '1.6rem',
+      md: '2.0rem',
       lg: '2.4rem',
-      xl: '3.2rem'
+      xl: '7.2rem'
     },
     weights: { regular: '400', medium: '500', bold: '700' }
   },
