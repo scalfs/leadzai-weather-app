@@ -5,7 +5,7 @@ export function useWeather(locationId: string) {
   return useQuery(
     ['weather', locationId],
     () => fetchWeatherConditions(locationId),
-    { cacheTime: 10 * 60 * 1000, select: transformData }
+    { cacheTime: 10 * 60 * 1000, select: transformData, enabled: !!locationId }
   )
 }
 

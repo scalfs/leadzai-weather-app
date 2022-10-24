@@ -8,9 +8,5 @@ export interface EventProps {
 }
 
 export function SolarEvent({ event, time }: EventProps) {
-  return (
-    <Text>
-      {capitalize(event)}: {formatFromUnixTime(time)}
-    </Text>
-  )
+  return <Text>{`${capitalize(event)}: ${formatFromUnixTime(time)}`}</Text>
 }
