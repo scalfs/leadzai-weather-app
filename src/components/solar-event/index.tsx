@@ -1,4 +1,4 @@
-import { Text } from 'components/text'
+import { Text } from 'components/ui/atoms/text'
 import React from 'react'
 import { capitalize } from 'utils'
 

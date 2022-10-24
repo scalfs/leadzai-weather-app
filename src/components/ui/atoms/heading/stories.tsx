@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { Heading, HeadingProps } from '.'
 
 export default {
-  title: 'Typography/Heading',
+  title: 'Atoms/Heading',
   component: Heading,
   args: { children: 'Weather app', size: 'lg' },
   argTypes: {

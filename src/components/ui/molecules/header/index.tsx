@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components'
 import React from 'react'
-import { Heading } from 'components/heading'
+import { Heading } from 'components/ui'
 
-export function Header() {
+export interface HeaderProps {
+  title: string
+}
+
+export function Header({ title }: HeaderProps) {
   return (
     <StyledHeader>
-      <Heading>Weather App</Heading>
+      <Heading>{title}</Heading>
     </StyledHeader>
   )
 }

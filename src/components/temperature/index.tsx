@@ -1,4 +1,4 @@
-import { Heading } from 'components/heading'
+import { Heading } from 'components/ui'
 import { useOptions } from 'context'
 import React from 'react'
 

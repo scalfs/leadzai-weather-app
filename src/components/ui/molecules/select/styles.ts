@@ -46,8 +46,8 @@ export const SelectViewport = styled(SelectPrimitive.Viewport)`
 export const SelectLabel = styled(SelectPrimitive.Label)`
   ${({ theme }) => css`
     opacity: 0.6;
-    color: ${theme.colors.onSurfaceVariant};
     font-size: ${theme.font.sizes.xs};
+    color: ${theme.colors.onSurfaceVariant};
     padding: ${theme.spacings['2xs']} ${theme.spacings.sm};
   `}
 `

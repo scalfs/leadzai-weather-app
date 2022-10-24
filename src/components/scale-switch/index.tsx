@@ -1,8 +1,9 @@
-import { Text } from 'components/text'
+import { Switch } from 'components/ui'
+import { Text } from 'components/ui'
 import { CelsiusScale, FahrenheitScale } from 'config/temperature-scale'
 import { useOptions } from 'context'
 import React from 'react'
-import * as S from './styles'
+import styled from 'styled-components'
 
 export function ScaleSwitch() {
   const { changeScale } = useOptions()
@@ -13,18 +14,22 @@ export function ScaleSwitch() {
   }
 
   return (
-    <S.Wrapper>
+    <Wrapper>
       <Text>
         <label htmlFor="s1">{CelsiusScale.unit}</label>
       </Text>
 
-      <S.Switch id="s1" onCheckedChange={onCheckedChange}>
-        <S.SwitchThumb />
-      </S.Switch>
+      <Switch id="s1" onCheckedChange={onCheckedChange} />
 
       <Text>
         <label htmlFor="s1">{FahrenheitScale.unit}</label>
       </Text>
-    </S.Wrapper>
+    </Wrapper>
   )
 }
+
+export const Wrapper = styled.div`
+  gap: 8px;
+  display: flex;
+  align-items: center;
+`

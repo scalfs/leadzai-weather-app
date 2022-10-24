@@ -24,7 +24,7 @@ interface Props {
 }
 
 export function OptionsProvider({ children }: Props) {
-  const [locationId, setLocationId] = useState(locations.portugal.lisbon.id)
+  const [locationId, setLocationId] = useState(locations['portugal'][1].id)
   const [temperatureScale, setTempScale] = useState<TempScale>(CelsiusScale)
 
   const changeScale = useCallback((scale: TempScale) => setTempScale(scale), [])
