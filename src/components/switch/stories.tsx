@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { UnitSwitch } from '.'
+import { ScaleSwitch } from '.'
 
 export default {
-  title: 'Components/UnitSwitch',
-  component: UnitSwitch
-} as Meta<typeof UnitSwitch>
+  title: 'Components/ScaleSwitch',
+  component: ScaleSwitch
+} as Meta<typeof ScaleSwitch>
 
-export const Default: StoryObj<typeof UnitSwitch> = {}
+export const Default: StoryObj<typeof ScaleSwitch> = {}
