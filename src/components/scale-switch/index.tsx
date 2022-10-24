@@ -6,7 +6,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 export function ScaleSwitch() {
-  const { changeScale } = useOptions()
+  const { changeScale, temperatureScale } = useOptions()
+
+  const checked = temperatureScale === FahrenheitScale
 
   const onCheckedChange = (checked: boolean) => {
     const newScale = checked ? FahrenheitScale : CelsiusScale
@@ -19,7 +21,7 @@ export function ScaleSwitch() {
         <label htmlFor="s1">{CelsiusScale.unit}</label>
       </Text>
 
-      <Switch id="s1" onCheckedChange={onCheckedChange} />
+      <Switch id="s1" onCheckedChange={onCheckedChange} checked={checked} />
 
       <Text>
         <label htmlFor="s1">{FahrenheitScale.unit}</label>
