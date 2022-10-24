@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { CelsiusScale, TempScale } from 'config/temperature-scale'
-import { locations } from 'data'
 import React, { ReactNode, useCallback, useContext, useState } from 'react'
 
 interface Context {
@@ -24,7 +23,7 @@ interface Props {
 }
 
 export function OptionsProvider({ children }: Props) {
-  const [locationId, setLocationId] = useState(locations['portugal'][1].id)
+  const [locationId, setLocationId] = useState('')
   const [temperatureScale, setTempScale] = useState<TempScale>(CelsiusScale)
 
   const changeScale = useCallback((scale: TempScale) => setTempScale(scale), [])
