@@ -1,7 +1,7 @@
 import { Skeleton } from 'components/skeleton'
 import React, { useState } from 'react'
 
-const ICON_URL = 'https://openweathermap.org/img/wn/'
+const ICON_URL = process.env.REACT_APP_ICON_URL
 const ICON_SUFFIX = '@2x.png'
 
 export interface WeatherIconProps {
@@ -13,7 +13,7 @@ export function WeatherIcon({ icon, description }: WeatherIconProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const onLoad = () => setIsLoaded(true)
 
-  const iconSrc = `${ICON_URL}${icon}${ICON_SUFFIX}`
+  const iconSrc = `${ICON_URL}/${icon}${ICON_SUFFIX}`
 
   return (
     <>
