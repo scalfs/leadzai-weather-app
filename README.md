@@ -66,18 +66,17 @@ A summary of the main files and folder structure in this project.
 ```
 ├── public
 ├── src
-│	├── components
-│       └── ui
-│	├──	config
-│	├── context
-│	├── data
-│	├── hooks
-│	├── pages
-│	├── services
-│	├── styles
-│	├── utils
-│	├── index.tsx
-│	├── serviceWorker.js
+│   ├── components
+│     └── ui
+│   ├── config
+│   ├── context
+│   ├── data
+│   ├── hooks
+│   ├── pages
+│   ├── services
+│   ├── styles
+│   ├── utils
+│   ├── index.tsx
 ```
 
 1.  **`public`**: This directory contain all the assets like images, icons, manifest (PWA), and favicons.
@@ -91,8 +90,7 @@ A summary of the main files and folder structure in this project.
     - **`services`**: Contains the code related to communicating with external APIs.
     - **`styles`**: Contains the the `global` styles file and the `theme` file defining the desing system.
     - **`utils`**: Contains utility functions for a variety of tasks.
-    - **`index.js`**: This is the first file which gets run in the browser after starting the application. `App.js` component rendering as well as `serviceworker` registration process takes place in this file.
-    - **`serviceWorker`**: This file contains the code related to registration/deregistration of a Service worker.
+    - **`index.js`**: This is the first file which gets run in the browser after starting the application.
 
 ## Learn More
 
