@@ -1,6 +1,7 @@
 import { Heading } from 'components/ui'
 import { useOptions } from 'context'
 import React from 'react'
+import { localizeTemperature } from 'utils'
 
 export interface TemperatureProps {
   temp: number
@@ -13,9 +14,7 @@ export function Temperature({ temp }: TemperatureProps) {
 
   return (
     <Heading size="xl" weight="bold" asChild>
-      <h1>
-        {Math.round(scaledTemp)} {temperatureScale.unit}
-      </h1>
+      <h1>{localizeTemperature(scaledTemp, temperatureScale.type)}</h1>
     </Heading>
   )
 }

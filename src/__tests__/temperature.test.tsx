@@ -2,7 +2,7 @@ import { Temperature } from 'components/temperature'
 import { CelsiusScale, FahrenheitScale } from 'config/temperature-scale'
 import { OptionsContext } from 'context'
 import React from 'react'
-import { render, screen } from 'utils/test-utils'
+import { render, screen, localizeTemperature } from 'utils'
 
 const mockContextValue = {
   locationId: '',
@@ -20,7 +20,11 @@ describe('<Temperature />', () => {
       </OptionsContext.Provider>
     )
 
-    expect(screen.getByRole('heading', { name: /0 ºC/ })).toBeDefined()
+    expect(
+      screen.getByRole('heading', {
+        name: localizeTemperature(0, CelsiusScale.type)
+      })
+    ).toBeDefined()
   })
 
   it('should render temperature converted to Fahrenheit scale', () => {
@@ -32,6 +36,10 @@ describe('<Temperature />', () => {
       </OptionsContext.Provider>
     )
 
-    expect(screen.getByRole('heading', { name: /212 ºF/ })).toBeDefined()
+    expect(
+      screen.getByRole('heading', {
+        name: localizeTemperature(212, FahrenheitScale.type)
+      })
+    ).toBeDefined()
   })
 })

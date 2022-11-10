@@ -4,6 +4,7 @@ import { CelsiusScale, FahrenheitScale } from 'config/temperature-scale'
 import { useOptions } from 'context'
 import React from 'react'
 import styled from 'styled-components'
+import { getTempUnit } from 'utils'
 
 export function ScaleSwitch() {
   const { changeScale, temperatureScale } = useOptions()
@@ -18,7 +19,7 @@ export function ScaleSwitch() {
   return (
     <Wrapper>
       <Text>
-        <label htmlFor="s1">{CelsiusScale.unit}</label>
+        <label htmlFor="s1">{getTempUnit(CelsiusScale.type)}</label>
       </Text>
 
       <Switch
@@ -29,7 +30,7 @@ export function ScaleSwitch() {
       />
 
       <Text>
-        <label htmlFor="s1">{FahrenheitScale.unit}</label>
+        <label htmlFor="s1">{getTempUnit(FahrenheitScale.type)}</label>
       </Text>
     </Wrapper>
   )
