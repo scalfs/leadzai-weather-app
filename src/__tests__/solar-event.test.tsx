@@ -1,6 +1,6 @@
 import { SolarEvent } from 'components/solar-event'
 import React from 'react'
-import { render, screen } from 'utils/test-utils'
+import { render, screen } from 'utils'
 
 describe('<SolarEvent />', () => {
   it('should render capitalized event and correct time', () => {
