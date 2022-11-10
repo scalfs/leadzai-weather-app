@@ -1,31 +1,26 @@
-import { Slot } from '@radix-ui/react-slot'
 import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 import { Required } from 'utils'
 
 export interface HeadingProps {
+  as?: 'h1' | 'h2'
+  children: ReactNode
   size?: 'lg' | 'xl'
   weight?: 'regular' | 'bold'
-  children: ReactNode
-  asChild?: boolean
 }
 
 export function Heading({
-  size = 'lg',
-  weight = 'regular',
+  as,
   children,
-  asChild
+  size = 'lg',
+  weight = 'regular'
 }: HeadingProps) {
-  const Comp = asChild ? Slot : 'h2'
+  const Comp = as ? StyledHeading.withComponent(as) : StyledHeading
 
-  return (
-    <Wrapper {...{ size, weight }}>
-      <Comp>{children}</Comp>
-    </Wrapper>
-  )
+  return <Comp {...{ size, weight }}>{children}</Comp>
 }
 
-const Wrapper = styled(Slot)<Required<HeadingProps, 'size' | 'weight'>>`
+const StyledHeading = styled.h2<Required<HeadingProps, 'size' | 'weight'>>`
   ${({ theme, size, weight }) => css`
     color: ${theme.colors.text};
     font-size: ${theme.font.sizes[size]};

@@ -13,8 +13,8 @@ export function Temperature({ temp }: TemperatureProps) {
   const scaledTemp = temperatureScale.convertFromKelvin(temp)
 
   return (
-    <Heading size="xl" weight="bold" asChild>
-      <h1>{localizeTemperature(scaledTemp, temperatureScale.type)}</h1>
+    <Heading size="xl" weight="bold" as="h1">
+      {localizeTemperature(scaledTemp, temperatureScale.type)}
     </Heading>
   )
 }
