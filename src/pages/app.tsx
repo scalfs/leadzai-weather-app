@@ -1,3 +1,4 @@
+import { ErrorBoundary } from 'components/error-boundary'
 import { ScaleSwitch } from 'components/scale-switch'
 import { SelectLocation } from 'components/select-location'
 import { Header } from 'components/ui'
@@ -12,12 +13,14 @@ export function App() {
       <Header title="Weather App" />
 
       <WeatherCard>
-        <OptionsRow>
-          <SelectLocation {...{ locations, defaultLocation }} />
-          <ScaleSwitch />
-        </OptionsRow>
+        <ErrorBoundary>
+          <OptionsRow>
+            <SelectLocation {...{ locations, defaultLocation }} />
+            <ScaleSwitch />
+          </OptionsRow>
 
-        <WeatherInfo />
+          <WeatherInfo />
+        </ErrorBoundary>
       </WeatherCard>
     </>
   )
