@@ -1,13 +1,14 @@
-import axios from 'axios'
+import { get } from './api'
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
-const API_URL = process.env.REACT_APP_API_URL || ''
+export interface WeatherData {
+  timezone: number
+  main: { temp: number }
+  weather: { description: string; icon: string }[]
+  sys: { sunrise: number; sunset: number }
+}
 
 export const fetchWeatherConditions = async (locationId: string) => {
-  const response = await axios.get(`${API_URL}/weather`, {
-    params: { id: locationId, appid: API_KEY }
-  })
-
-  return response.data
+  return await get<WeatherData>(`weather/?appid=${API_KEY}&id=${locationId}`)
 }
