@@ -18,15 +18,15 @@ export const Default: StoryObj<HeadingProps> = {}
 
 export const XLarge: StoryObj<HeadingProps> = { args: { size: 'xl' } }
 
-export const CustomTag: StoryObj<HeadingProps> = {
+export const CustomComponent: StoryObj<HeadingProps> = {
   args: {
     size: 'xl',
     weight: 'bold',
-    asChild: true,
+    as: 'h1',
     children: <h1>15 ºC</h1>
   },
   argTypes: {
     children: { table: { disable: true } },
-    asChild: { table: { disable: true } }
+    as: { table: { disable: true } }
   }
 }
