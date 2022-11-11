@@ -1,24 +1,16 @@
 import { Temperature } from 'components/temperature'
-import { CelsiusScale, FahrenheitScale } from 'config/temperature-scale'
+import {
+  CelsiusScale,
+  FahrenheitScale,
+  TempScale
+} from 'config/temperature-scale'
 import { OptionsContext } from 'context'
 import React from 'react'
-import { render, screen, localizeTemperature } from 'utils'
-
-const mockContextValue = {
-  locationId: '',
-  changeLocation: jest.fn(),
-  changeScale: jest.fn()
-}
+import { localizeTemperature, render, screen } from 'utils'
 
 describe('<Temperature />', () => {
   it('should render temperature converted to Celsius scale', () => {
-    render(
-      <OptionsContext.Provider
-        value={{ ...mockContextValue, temperatureScale: CelsiusScale }}
-      >
-        <Temperature temp={273} />
-      </OptionsContext.Provider>
-    )
+    renderWithScaleContext(<Temperature temp={273} />, CelsiusScale)
 
     expect(
       screen.getByRole('heading', {
@@ -28,13 +20,7 @@ describe('<Temperature />', () => {
   })
 
   it('should render temperature converted to Fahrenheit scale', () => {
-    render(
-      <OptionsContext.Provider
-        value={{ ...mockContextValue, temperatureScale: FahrenheitScale }}
-      >
-        <Temperature temp={373} />
-      </OptionsContext.Provider>
-    )
+    renderWithScaleContext(<Temperature temp={373} />, FahrenheitScale)
 
     expect(
       screen.getByRole('heading', {
@@ -43,3 +29,19 @@ describe('<Temperature />', () => {
     ).toBeDefined()
   })
 })
+
+const mockContextValue = {
+  locationId: '',
+  changeLocation: jest.fn(),
+  changeScale: jest.fn()
+}
+
+function renderWithScaleContext(ui: React.ReactElement, scale: TempScale) {
+  return render(
+    <OptionsContext.Provider
+      value={{ ...mockContextValue, temperatureScale: scale }}
+    >
+      {ui}
+    </OptionsContext.Provider>
+  )
+}

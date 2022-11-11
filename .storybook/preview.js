@@ -1,8 +1,9 @@
 import { themes } from '@storybook/theming';
+import { OptionsProvider } from 'context';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import GlobalStyles from 'styles/global';
 import theme from 'styles/theme';
-import GlobalStyles from 'styles/global'
 
 export const parameters = {
   docs: { theme: themes.dark  },
@@ -14,7 +15,9 @@ export const decorators = [
   (Story) => (
     <ThemeProvider theme={theme}>
       <GlobalStyles removeBg/>
-      <Story />
+      <OptionsProvider>
+        <Story />
+      </OptionsProvider>
     </ThemeProvider>
   ),
 ];

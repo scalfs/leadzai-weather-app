@@ -1,23 +1,32 @@
 import React from 'react'
-import * as SwitchPrimitive from '@radix-ui/react-switch'
 import styled, { css } from 'styled-components'
 
 interface SwitchProps {
-  id: string
-  label: string
+  id?: string
+  label?: string
   checked: boolean
   onCheckedChange: (checked: boolean) => void
 }
 
 export function Switch({ id, onCheckedChange, checked, label }: SwitchProps) {
   return (
-    <SwitchRoot {...{ id, onCheckedChange, checked }} aria-label={label}>
-      <SwitchThumb />
+    <SwitchRoot
+      {...{ id }}
+      type="button"
+      role="switch"
+      aria-label={label}
+      aria-checked={checked}
+      data-state={getState(checked)}
+      onClick={() => onCheckedChange(!checked)}
+    >
+      <SwitchThumb data-state={getState(checked)} />
     </SwitchRoot>
   )
 }
 
-const SwitchRoot = styled(SwitchPrimitive.Root)`
+const getState = (checked: boolean) => (checked ? 'checked' : 'unchecked')
+
+const SwitchRoot = styled.button`
   ${({ theme }) => css`
     all: unset;
     width: 28px;
@@ -27,9 +36,6 @@ const SwitchRoot = styled(SwitchPrimitive.Root)`
     background-color: ${theme.colors.surface};
     border-radius: 8px;
 
-    &[data-state='checked'] {
-      backgroundcolor: black;
-    }
     &:focus-visible {
       outline: 2px solid ${theme.colors.outline};
       outline-offset: 4px;
@@ -38,7 +44,7 @@ const SwitchRoot = styled(SwitchPrimitive.Root)`
   `}
 `
 
-const SwitchThumb = styled(SwitchPrimitive.Thumb)`
+const SwitchThumb = styled.span`
   ${({ theme }) => css`
     display: block;
     width: 16px;
