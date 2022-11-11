@@ -1,14 +1,25 @@
-import React, { ReactNode } from 'react'
+import React, { ComponentPropsWithoutRef, ElementType } from 'react'
 import styled, { css } from 'styled-components'
 import { Required } from 'utils'
 
-export interface TextProps {
+export type TextProps<C extends ElementType = 'span'> = {
+  as?: C
   size?: 'sm' | 'md'
-  children: ReactNode
 }
 
-export function Text({ size = 'sm', children }: TextProps) {
-  return <StyledText size={size}>{children}</StyledText>
+type Props<C extends ElementType> = TextProps<C> & ComponentPropsWithoutRef<C>
+
+export function Text<C extends ElementType>({
+  size = 'sm',
+  as = 'span',
+  children,
+  ...rest
+}: Props<C>) {
+  return (
+    <StyledText {...{ as, size }} {...rest}>
+      {children}
+    </StyledText>
+  )
 }
 
 const StyledText = styled.span<Required<TextProps, 'size'>>`

@@ -3,21 +3,19 @@ import styled, { css } from 'styled-components'
 import { Required } from 'utils'
 
 export interface HeadingProps {
-  as?: 'h1' | 'h2'
   children: ReactNode
   size?: 'lg' | 'xl'
   weight?: 'regular' | 'bold'
+  as?: keyof JSX.IntrinsicElements
 }
 
 export function Heading({
-  as,
   children,
+  as = 'h2',
   size = 'lg',
   weight = 'regular'
 }: HeadingProps) {
-  const Comp = as ? StyledHeading.withComponent(as) : StyledHeading
-
-  return <Comp {...{ size, weight }}>{children}</Comp>
+  return <StyledHeading {...{ as, size, weight }}>{children}</StyledHeading>
 }
 
 const StyledHeading = styled.h2<Required<HeadingProps, 'size' | 'weight'>>`
