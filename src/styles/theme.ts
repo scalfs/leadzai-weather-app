@@ -15,7 +15,7 @@ const theme = {
     family:
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
     sizes: {
-      xs: '1.2rem',
+      xs: '1.4rem',
       sm: '1.6rem',
       md: '2.0rem',
       lg: '2.4rem',

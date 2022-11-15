@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Meta, StoryObj } from '@storybook/react'
 import { Select, SelectProps } from '.'
 
-const sections = [
-  { title: 'brazil', data: [{ id: '1', name: 'Vila Velha' }] },
-  { title: 'portugal', data: [{ id: '2', name: 'Lisboa' }] }
+const options = [
+  { id: '1', name: 'Vila Velha' },
+  { id: '2', name: 'Lisboa' }
 ]
 
 export default {
   title: 'Molecules/Select',
   component: Select,
-  args: { sections, selected: '2', onChangeSelected: () => {} }
+  args: { options, selected: '2', onSelectOption: () => null }
 } as Meta<SelectProps>
 
 export const Default: StoryObj<SelectProps> = {}
