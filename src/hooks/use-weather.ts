@@ -1,15 +1,34 @@
-import { useQuery } from '@tanstack/react-query'
+import { useCallback } from 'react'
 import { fetchWeatherConditions, WeatherData } from 'services/weather'
+import { useFetch } from './use-fetch'
+import { useSessionStorage } from './use-storage'
+
+const CACHE_TIME = 10 * 60 * 1000
+
+type CachedWeather = WeatherData & { updatedAt: number }
 
 export function useWeather(locationId: string) {
-  return useQuery(
-    ['weather', locationId],
-    () => fetchWeatherConditions(locationId),
-    { cacheTime: 10 * 60 * 1000, select: transformData, enabled: !!locationId }
+  const [storedWeather, writeToCache] = useSessionStorage<CachedWeather>(
+    `weather - ${locationId}`,
+    {} as CachedWeather
   )
+
+  const fetchWeather = useCallback(async () => {
+    const now = new Date().getTime()
+    if (storedWeather.updatedAt) {
+      const timeSinceLastUpdate = now - storedWeather.updatedAt
+      if (timeSinceLastUpdate < CACHE_TIME) return storedWeather
+    }
+
+    const updatedWeather = await fetchWeatherConditions(locationId)
+    writeToCache({ ...updatedWeather, updatedAt: now })
+    return updatedWeather
+  }, [locationId, storedWeather, writeToCache])
+
+  return useFetch(fetchWeather, { enabled: !!locationId })
 }
 
-function transformData(data: WeatherData) {
+export function transformWeatherData(data: WeatherData) {
   return {
     temperature: data.main.temp,
     weatherIcon: data.weather[0].icon,

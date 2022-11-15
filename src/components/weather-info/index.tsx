@@ -3,7 +3,7 @@ import { SolarEvent } from 'components/solar-event'
 import { Temperature } from 'components/temperature'
 import { WeatherIcon } from 'components/weather-icon'
 import { useOptions } from 'context'
-import { useWeather } from 'hooks'
+import { transformWeatherData, useWeather } from 'hooks'
 import React from 'react'
 import styled, { css } from 'styled-components'
 
@@ -14,7 +14,7 @@ export function WeatherInfo() {
   if (isLoading || !data) return <LoadingState />
 
   const { temperature, weatherIcon, weatherDesc, sunriseTime, sunsetTime } =
-    data
+    transformWeatherData(data)
 
   return (
     <Wrapper>
