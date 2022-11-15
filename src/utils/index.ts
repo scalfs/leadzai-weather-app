@@ -1,5 +1,6 @@
 export * from './date'
+export * from './storage'
 export * from './string'
 export * from './temperature'
-export * from './utility-types'
 export * from './test-utils'
+export * from './utility-types'

@@ -1,29 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback } from 'react'
 import { fetchWeatherConditions, WeatherData } from 'services/weather'
+import { readFromStorage, writeToStorage } from 'utils/storage'
 import { useFetch } from './use-fetch'
-import { useSessionStorage } from './use-storage'
 
 const CACHE_TIME = 10 * 60 * 1000
 
 type CachedWeather = WeatherData & { updatedAt: number }
 
 export function useWeather(locationId: string) {
-  const [storedWeather, writeToCache] = useSessionStorage<CachedWeather>(
-    `weather - ${locationId}`,
-    {} as CachedWeather
-  )
+  const key = `weather - ${locationId}`
 
   const fetchWeather = useCallback(async () => {
     const now = new Date().getTime()
-    if (storedWeather.updatedAt) {
-      const timeSinceLastUpdate = now - storedWeather.updatedAt
-      if (timeSinceLastUpdate < CACHE_TIME) return storedWeather
+    const cachedWeather = readFromStorage<CachedWeather>(key)
+
+    if (cachedWeather) {
+      const timeSinceLastUpdate = now - cachedWeather.updatedAt
+      if (timeSinceLastUpdate < CACHE_TIME) return cachedWeather
     }
 
     const updatedWeather = await fetchWeatherConditions(locationId)
-    writeToCache({ ...updatedWeather, updatedAt: now })
+    writeToStorage(key, { ...updatedWeather, updatedAt: now })
     return updatedWeather
-  }, [locationId, storedWeather, writeToCache])
+  }, [locationId])
 
   return useFetch(fetchWeather, { enabled: !!locationId })
 }
