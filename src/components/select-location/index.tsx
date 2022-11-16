@@ -5,16 +5,11 @@ import React, { useEffect } from 'react'
 
 interface Props {
   defaultLocation: string
-  locations: { [key: string]: { id: string; name: string }[] }
+  locations: { id: string; name: string }[]
 }
 
 export function SelectLocation({ locations, defaultLocation }: Props) {
   const { locationId, changeLocation } = useOptions()
-
-  const sections = Object.entries(locations).map(([country, cities]) => ({
-    title: country,
-    data: cities
-  }))
 
   useEffect(() => {
     if (!locationId) changeLocation(defaultLocation)
@@ -22,10 +17,10 @@ export function SelectLocation({ locations, defaultLocation }: Props) {
 
   return (
     <Select
-      label="select-location"
-      sections={sections}
+      options={locations}
       selected={locationId}
-      onChangeSelected={changeLocation}
+      label="Select Location"
+      onSelectOption={changeLocation}
     />
   )
 }

@@ -1,24 +1,44 @@
+import { ErrorBoundary } from 'components/error-boundary'
 import { ScaleSwitch } from 'components/scale-switch'
 import { SelectLocation } from 'components/select-location'
 import { Header } from 'components/ui'
 import { WeatherInfo } from 'components/weather-info'
 import { defaultLocation, locations } from 'data'
 import React from 'react'
-import * as S from './styles'
+import styled, { css } from 'styled-components'
 
 export function App() {
   return (
     <>
       <Header title="Weather App" />
 
-      <S.WeatherCard>
-        <S.OptionsRow>
-          <SelectLocation {...{ locations, defaultLocation }} />
-          <ScaleSwitch />
-        </S.OptionsRow>
+      <WeatherCard>
+        <ErrorBoundary>
+          <OptionsRow>
+            <SelectLocation {...{ locations, defaultLocation }} />
+            <ScaleSwitch />
+          </OptionsRow>
 
-        <WeatherInfo />
-      </S.WeatherCard>
+          <WeatherInfo />
+        </ErrorBoundary>
+      </WeatherCard>
     </>
   )
 }
+
+const WeatherCard = styled.main`
+  ${({ theme }) => css`
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    max-width: 32rem;
+    gap: ${theme.spacings.xl};
+    padding: ${theme.spacings.lg};
+  `}
+`
+
+const OptionsRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`

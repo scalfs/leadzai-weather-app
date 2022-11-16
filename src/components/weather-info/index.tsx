@@ -3,9 +3,9 @@ import { SolarEvent } from 'components/solar-event'
 import { Temperature } from 'components/temperature'
 import { WeatherIcon } from 'components/weather-icon'
 import { useOptions } from 'context'
-import { useWeather } from 'hooks'
+import { transformWeatherData, useWeather } from 'hooks'
 import React from 'react'
-import * as S from './styles'
+import styled, { css } from 'styled-components'
 
 export function WeatherInfo() {
   const { locationId } = useOptions()
@@ -14,35 +14,67 @@ export function WeatherInfo() {
   if (isLoading || !data) return <LoadingState />
 
   const { temperature, weatherIcon, weatherDesc, sunriseTime, sunsetTime } =
-    data
+    transformWeatherData(data)
 
   return (
-    <S.Wrapper>
-      <S.WeatherInfo>
-        <Temperature temp={temperature} />
-        <WeatherIcon icon={weatherIcon} description={weatherDesc} />
-      </S.WeatherInfo>
+    <Wrapper>
+      <Temperature temp={temperature} />
+      <WeatherIcon icon={weatherIcon} description={weatherDesc} />
 
-      <S.EventsRow>
+      <EventsRow>
         <SolarEvent event="sunrise" time={sunriseTime} />
         <SolarEvent event="sunset" time={sunsetTime} />
-      </S.EventsRow>
-    </S.Wrapper>
+      </EventsRow>
+    </Wrapper>
   )
 }
 
 function LoadingState() {
   return (
-    <>
-      <S.WeatherInfo>
-        <Skeleton height={85} width={172} />
-        <Skeleton height={72} width={72} />
-      </S.WeatherInfo>
+    <LoadingWrapper>
+      <Skeleton height={85} width={172} />
+      <Skeleton height={72} width={72} />
 
-      <S.EventsRow>
+      <EventsRow>
         <Skeleton height={19} width={107} />
         <Skeleton height={19} width={107} />
-      </S.EventsRow>
-    </>
+      </EventsRow>
+    </LoadingWrapper>
   )
 }
+
+const Wrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: ${theme.spacings.md};
+
+    animation: opacity 0.5s ease-in;
+    @keyframes opacity {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  `}
+`
+
+const EventsRow = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    gap: ${theme.spacings.md};
+    margin: ${theme.spacings.md} auto;
+  `}
+`
+
+const LoadingWrapper = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: ${theme.spacings.md};
+  `}
+`

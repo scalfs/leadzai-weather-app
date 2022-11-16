@@ -1,22 +1,34 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchWeatherConditions } from 'services/weather'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useCallback } from 'react'
+import { fetchWeatherConditions, WeatherData } from 'services/weather'
+import { readFromStorage, writeToStorage } from 'utils/storage'
+import { useFetch } from './use-fetch'
+
+const CACHE_TIME = 10 * 60 * 1000
+
+type CachedWeather = WeatherData & { updatedAt: number }
 
 export function useWeather(locationId: string) {
-  return useQuery(
-    ['weather', locationId],
-    () => fetchWeatherConditions(locationId),
-    { cacheTime: 10 * 60 * 1000, select: transformData, enabled: !!locationId }
-  )
+  const key = `weather - ${locationId}`
+
+  const fetchWeather = useCallback(async () => {
+    const now = new Date().getTime()
+    const cachedWeather = readFromStorage<CachedWeather>(key)
+
+    if (cachedWeather) {
+      const timeSinceLastUpdate = now - cachedWeather.updatedAt
+      if (timeSinceLastUpdate < CACHE_TIME) return cachedWeather
+    }
+
+    const updatedWeather = await fetchWeatherConditions(locationId)
+    writeToStorage(key, { ...updatedWeather, updatedAt: now })
+    return updatedWeather
+  }, [locationId])
+
+  return useFetch(fetchWeather, { enabled: !!locationId })
 }
 
-interface ApiData {
-  timezone: number
-  main: { temp: number }
-  weather: { description: string; icon: string }[]
-  sys: { sunrise: number; sunset: number }
-}
-
-function transformData(data: ApiData) {
+export function transformWeatherData(data: WeatherData) {
   return {
     temperature: data.main.temp,
     weatherIcon: data.weather[0].icon,
