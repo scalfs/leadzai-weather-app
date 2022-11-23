@@ -13,5 +13,5 @@ export function localizeTemperature(temp: number, scale: TempScale['type']) {
 }
 
 export function getTempUnit(scale: TempScale['type']) {
-  return temperatureFormatter(scale).format(0).split(' ')[1]
+  return temperatureFormatter(scale).format(0).split(/[\s]/)[1]
 }
