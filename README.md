@@ -31,9 +31,9 @@ This project uses the following technologies:
 ## Getting started
 - Clone the project locally:
 ```sh
-git clone https://github.com/scalfs/leadzai-weather-app
+git clone https://github.com/scalfs/weather-app
 
-cd ./leadzai-weather-app
+cd ./weather-app
 ````
 
 - Define the environment variables:
